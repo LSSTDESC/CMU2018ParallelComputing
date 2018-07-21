@@ -3,7 +3,7 @@ MAINTAINER EiffL
 
 RUN apt-get update && \
     apt-get install -y dpkg-dev autoconf automake gcc g++ make gfortran wget zlib1g-dev \
-    python3-numpy python3-dev git &&\
+    python3-numpy python3-dev git cython3 &&\
     apt-get clean all
 
 # Make sure we are runnning python3
@@ -34,7 +34,9 @@ RUN cd /build/ && \
 RUN cd /build/ && \
     git clone https://github.com/h5py/h5py.git                                     ; \
     cd h5py                                                                        ; \
+    export CC=mpicc                                                                ; \
     export HDF5_DIR=/usr/local/hdf5                                                ; \
+    python setup.py configure --mpi                                                ; \
     python setup.py build                                                          ; \
     python setup.py install && rm -rf /build/
 
