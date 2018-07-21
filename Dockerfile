@@ -3,7 +3,7 @@ MAINTAINER EiffL
 
 RUN apt-get update && \
     apt-get install -y dpkg-dev autoconf automake gcc g++ make gfortran wget zlib1g-dev \
-    python3-numpy python3-dev &&\
+    python3-numpy python3-dev git &&\
     apt-get clean all
 
 # Make sure we are runnning python3
