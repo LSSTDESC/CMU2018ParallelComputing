@@ -19,3 +19,5 @@ RUN cd /build && wget https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-3.0.0
   && tar xvzf mpi4py-3.0.0.tar.gz
 RUN cd /build/mpi4py-3.0.0 && python3 setup.py build && python setup.py install && rm -rf /build/
 RUN /sbin/ldconfig
+
+ADD . /deschool 
