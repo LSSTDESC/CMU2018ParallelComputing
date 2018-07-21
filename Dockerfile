@@ -2,7 +2,7 @@ FROM ubuntu
 MAINTAINER EiffL
 
 RUN apt-get update && \
-    apt-get install -y autoconf automake gcc g++ make gfortran wget zlib1g-dev \
+    apt-get install -y dpkg-dev autoconf automake gcc g++ make gfortran wget zlib1g-dev \
     python3-numpy python3-dev &&\
     apt-get clean all
 
