@@ -36,9 +36,12 @@ C[:, start:end] = np.dot(A, B)
 
 buffer[:] = C[:, rank * block_size:(rank + 1) * block_size]
 
+source_rank = (rank + 1) % size
+dest_rank = (rank - 1) % size
+
 for i in range(size - 1):
-    comm.Sendrecv_replace(buffer, dest=((rank-1) + size) % size, source=(rank + 1) % size)
-    C[:, ((rank + 1 + i) % size ) * block_size:(((rank +1 + i) % size ) + 1) * block_size] = buffer
+    comm.Sendrecv_replace(buffer, dest=dest_rank, source=source_rank)
+    C[:, ((source_rank + i) % size) * block_size:(((source_rank + i) % size) + 1) * block_size] = buffer
 
 t1 = time.time() # end time
 
